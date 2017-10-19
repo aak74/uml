@@ -1,0 +1,46 @@
+@startuml
+title Описание процесса работы над новой задачей
+
+dev -> dev: git checkout master
+note left: Переключаемся на мастер
+origin -> dev: git pull origin master
+note left
+    Начинаем новую ветку
+    всегда со свежего мастера
+end note
+activate dev
+    dev -> dev: git checkout -b iss-1234
+    note left
+        Новая ветка должна
+        быть правильно названа
+        по шаблону iss-1234,
+        где 1234 - это номер задачи
+    end note
+    |||
+    note left of dev: Работа над задачей
+    |||
+    dev -> dev: git commit -m "#1234 Описываете что \nименно сделано в ветке"
+    note left
+        В сообщении о коммите
+        обязательно указываете #1234,
+        где 1234 - это номер задачи
+    end note
+    activate origin
+        dev --> origin: git push origin iss-1234
+        note left
+            push ветки до попытки
+            мержа, чтобы на удаленном
+            репозитории была
+            "чистая" ветка
+        end note
+
+        origin --> dev: git pull origin master
+        note left: мерж со свежим мастером
+        |||
+        note left of dev: разрешение конфликтов
+        |||
+        dev -> origin: git push origin iss-1234
+        note left: push merged branch
+    deactivate origin
+deactivate dev
+@enduml

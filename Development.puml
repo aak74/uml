@@ -1,0 +1,38 @@
+@startuml
+title Использование одного сервера для\n нескольких площадок разработки
+
+database "\nMySQL\nиспользуется **одна**\nБД\n" as db
+
+folder "All files" {
+  folder "Shared files" {
+    (bitrix)
+    (upload)
+  }
+  note right
+    папки bitrix и upload
+    исключаются из git
+    ---
+    Для удобства их можно 
+    поместить **в отдельную папку**
+  end note
+  folder code {
+      (dev01)
+      (dev02)
+  }
+  note left
+    Количество площадок
+    для разработки **не ограничено**
+    ---
+    В коде размещаются
+    **симовльные ссылки** на
+    папки bitrix и upload
+  end note
+}
+
+(dev01) -> (upload)
+(dev02) -> (upload)
+(dev01) -> (bitrix)
+(dev02) -> (bitrix)
+(dev01) -> (db)
+(dev02) -> (db)
+@enduml
