@@ -1,38 +1,65 @@
 @startuml
-title Использование одного сервера для\n нескольких площадок разработки
+skinparam backgroundColor #EEEBDC
+skinparam borderColor Blue
+skinparam handwritten true
+
+skinparam component {
+  FontSize 18
+  BackgroundColor<<Apache>> Red
+  BorderColor<<Apache>> #FF6655
+  FontName Courier
+  BorderColor black
+  BackgroundColor gold
+  ArrowFontName Impact
+  ArrowColor #FF6655
+  ArrowFontColor #777777
+}
+
+skinparam database {
+	BackgroundColor DarkSeaGreen
+	BorderColor DarkSlateGray
+}
+
+title Использование **ОДНОГО СЕРВЕРА** \nдля нескольких площадок разработки
+
+left to right direction
 
 database "\nMySQL\nиспользуется **одна**\nБД\n" as db
 
-folder "All files" {
-  folder "Shared files" {
-    (bitrix)
-    (upload)
-  }
-  note right
-    папки bitrix и upload
+package shared {
+  [bitrix]
+  [upload]
+  note bottom of upload
+    Папки bitrix и upload
     исключаются из git
     ---
     Для удобства их можно 
     поместить **в отдельную папку**
+    /home/bitrix/shared/
   end note
-  folder code {
-      (dev01)
-      (dev02)
-  }
-  note left
+}
+
+package Code {
+  [dev1.lkk.pgkweb.lo] as dev1
+  [dev2.lkk.pgkweb.lo] as dev2
+  note bottom of dev2
     Количество площадок
     для разработки **не ограничено**
     ---
-    В коде размещаются
-    **симовльные ссылки** на
+    Папки для разработки вида:
+    /home/bitrix/ext_www/dev1.lkk.pgkweb.lo/
+    /home/bitrix/ext_www/dev2.lkk.pgkweb.lo/
+    ===
+    В папках для отдельных разработчиков 
+    размещаются **символьные ссылки** на
     папки bitrix и upload
   end note
 }
 
-(dev01) -> (upload)
-(dev02) -> (upload)
-(dev01) -> (bitrix)
-(dev02) -> (bitrix)
-(dev01) -> (db)
-(dev02) -> (db)
+(dev1) - (upload)
+(dev2) - (upload)
+(dev1) - (bitrix)
+(dev2) - (bitrix)
+(dev1) -down- (db)
+(dev2) -down- (db)
 @enduml
