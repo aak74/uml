@@ -1,0 +1,27 @@
+digraph G {
+  graph [rankdir=TB bgcolor=transparent style=dotted]
+  node[style="filled"]
+  node[width=0.6 height=0.6]
+  edge[arrowhead=none style=invis]
+  subgraph cluster1 {
+    graph [rankdir=TB label="Исполнитель"]
+    subgraph cluster2 {
+      label=test
+      node[color="#b3e2c9"]
+      T1 -> T2 -> T3 -> T4
+    }
+    subgraph cluster3 {
+      label="dev"
+      node[color="#fff2ae"]
+      D5 -> D6 -> D7 -> D8
+      D1 -> D2 -> D3 -> D4
+    }
+  }
+  subgraph cluster0 {
+    label="Заказчик\n\n\n"
+    node[shape=box width=1.5 height=0.5 color=burlywood1]
+    prod -> I1 -> gitlab -> I2
+    I1 [style=invisible]
+    I2 [style=invisible]
+  }
+}
