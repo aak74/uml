@@ -9,7 +9,7 @@ digraph G {
     A1 -> A2 -> A3 -> A4 -> A5 -> A6
   }
   subgraph cluster1 {
-    label="Development"
+    label="Development\n\n\n"
     subgraph cluster1 {
       label="iss-1"
       style="dotted"
@@ -19,31 +19,21 @@ digraph G {
       label="iss-2 "
       style="dotted"
       node[group=iss2]
-      C1 -> C2
+      C1 -> C2 -> C3 -> C4
     }
-    subgraph cluster3 {
-      style="dotted"
-      label="iss-3"
-      node[group=iss3]
-      D1 -> D2 -> D3
-    }
-
     subgraph cluster4 {
       style="dotted"
-      label="iss-4 "
+      label="iss-3"
       node[group=iss4]
-      E1 -> E2 -> E3 -> E4
+      D1 -> D2 -> D3 -> D4
     }
   }
   edge[color=seagreen1]
-  A3 -> C2
-  A4 -> D3
-  A2 -> B1
   A2 -> C1
+  A3 -> C3
+  A2 -> B1
   A2 -> D1
-  A2 -> E1
   edge[color=gold]
   B2 -> A3
-  C2 -> A4
-  D3 -> A5
+  C4 -> A4
 }

@@ -1,0 +1,18 @@
+digraph G {
+  rankdir="TB";
+  bgcolor="transparent";
+  node[style="filled", width=0.5, height=0.5, shape=circle];
+  edge[weight=5, arrowhead=none];
+  node[group=master];
+  A1 -> A2 -> A3 -> A4 -> A5[color=green];
+  node[group=iss1];
+  A2 -> B1 -> B2 -> iss1 -> A3[color=blue];
+  node[group=iss2];
+  A2 -> C1 -> C2 -> iss2 -> A4[color=red];
+  node[group=iss2];
+  A2 -> D1 -> iss3;
+  A5[shape=box,label=master]
+  iss1[shape=box,label="iss-1"]
+  iss2[shape=box,label="iss-2"]
+  iss3[shape=box,label="iss-3"]
+}

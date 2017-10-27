@@ -1,0 +1,14 @@
+@startuml
+|master|
+:A1;
+fork
+  :B1;
+  :C1;
+|iss-1|
+|iss-2|
+:B2;
+|master|
+:A2;
+|iss-2|
+:C1;
+@enduml
