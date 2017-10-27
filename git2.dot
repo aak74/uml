@@ -1,0 +1,43 @@
+digraph G {
+  graph [center=1 rankdir=TB bgcolor="transparent"]
+  node[style="filled" width=0.5 height=0.5 shape=circle color=burlywood1]
+  edge[weight=5, arrowhead=none, penwidth=2]
+  subgraph cluster0 {
+    label="master"
+    bgcolor=lightgrey
+    node[group=master]
+    A1 -> A2
+    { edge [label="     "]
+      A2 -> A3
+    }
+    A3 -> A4 -> A5 -> A6
+  }
+  subgraph cluster1 {
+    style="invis"
+    subgraph cluster1 {
+      label="iss-1"
+      style="dotted"
+  		node [group=iss1]
+      A2 -> B1 -> A3
+    }
+    subgraph cluster2 {
+      label="iss-2"
+      style="dotted"
+      node[group=iss2]
+      A2 -> C1 -> C2 -> A4[color=red]
+    }
+    subgraph cluster3 {
+      style="dotted"
+      label="iss-3"
+      node[group=iss3]
+      A2 -> D1 -> D2 -> D3 -> A5[color=blue]
+    }
+
+    subgraph cluster4 {
+      style="dotted"
+      label="iss-4"
+      node[group=iss4]
+      A2 -> E1 -> E2 -> E3 -> E4
+    }
+  }
+}
