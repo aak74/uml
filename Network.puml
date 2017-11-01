@@ -1,0 +1,70 @@
+@startuml
+left to right direction
+
+actor "Wi-Fi cliens" as wifi
+
+rectangle "Вход" {
+  component "Zyxel Keenetic" as Zyxel
+  (MTS) -down-> [Zyxel]
+  (Yarnet) -down-> [Zyxel]
+  [Zyxel] -down-> [Zyxel 2]
+}
+[Zyxel] -> wifi
+
+database "ICS" as ICS {
+
+}
+note left of ICS
+  192.168.255.254
+  192.168.1.254
+end note
+[Zyxel] -> ICS
+
+database Asterisk {
+
+}
+
+[Zyxel] --> Asterisk
+(414-000) --> Asterisk
+
+note left of Asterisk
+192.168.0.253
+end note
+
+frame "Телефоны" {
+  Asterisk -> (phone1)
+  Asterisk -> (phone2)
+  Asterisk -> (phone3)
+}
+
+
+ICS -> [Коммутаторы]
+database VM1 {
+
+}
+
+database VM2 {
+
+}
+
+database Master {
+
+}
+
+[Коммутаторы] -right-> VM1
+[Коммутаторы] -right-> VM2
+[Коммутаторы] -right-> Master
+
+frame "Рабочие станции" {
+  [Коммутаторы] -up-> [comp1]
+  [Коммутаторы] -up-> [comp2]
+  [Коммутаторы] -up-> [comp3]
+  [Коммутаторы] -up-> [comp4]
+}
+
+frame "Принтеры" {
+  [Коммутаторы] --> [HP]
+  [Коммутаторы] --> [Kyocera]
+  [Коммутаторы] --> [Samsung]
+}
+@enduml
