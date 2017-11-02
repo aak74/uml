@@ -12,7 +12,7 @@ rectangle "Вход" {
   [linksys]
 }
 
-node "Asterisk\n\n\n\n\n\n" as Asterisk {
+node "**Asterisk**\n\n\n\n\n\n" as Asterisk {
 
 }
 
@@ -28,7 +28,7 @@ node phones [
   ...
 ]
 
-node "\n\nICS\n\n\n\n" as ICS {
+node "**ICS**\n\n\n\n\n\n" as ICS {
   
 }
 
@@ -100,7 +100,7 @@ frame "Принтеры" {
 [Zyxel 2] -l-> wifi
 
 [Zyxel] --> ICS
-ICS -d-> [Коммутаторы]
+ICS -d--> [Коммутаторы]
 
 number --> [linksys]
 [linksys] -> [Zyxel]
@@ -133,6 +133,11 @@ end note
 
 note bottom of Asterisk
 192.168.1.253
+end note
+
+note bottom of Clients5
+192.168.0.248
+Centos 6.8
 end note
 
 @enduml
