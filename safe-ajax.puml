@@ -1,0 +1,17 @@
+@startuml
+:generate
+token on
+backend;
+:frontend;
+:generate
+fields;
+
+if (token used) then (yes)
+  -[#red]->
+  :fail;
+else (no)
+  -[#green]->
+  :send form;
+endif
+:happy end;
+@enduml
